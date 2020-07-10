@@ -3,17 +3,17 @@
 
   This example code works for Covid Machine
 
-Works:
+  Works:
 
-  * WiFiManager Web
+    WiFiManager Web
 
-TODO:
+  TODO:
 
   - Read sensor and alerts
   - MQTT
   - Google Docs Connect
   - Update OTA
-  
+
   Electronic Cats 2020
 */
 #include <WiFiManager.h> // https://github.com/tzapu/WiFiManager
