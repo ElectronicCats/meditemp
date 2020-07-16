@@ -199,12 +199,12 @@ $EndComp
 $Comp
 L power:+5V #PWR041
 U 1 1 5E9F5A60
-P 7125 2130
-F 0 "#PWR041" H 7125 1980 50  0001 C CNN
-F 1 "+5V" H 7125 2275 50  0000 C CNN
-F 2 "" H 7125 2130 50  0001 C CNN
-F 3 "" H 7125 2130 50  0001 C CNN
-	1    7125 2130
+P 6750 2585
+F 0 "#PWR041" H 6750 2435 50  0001 C CNN
+F 1 "+5V" H 6750 2730 50  0000 C CNN
+F 2 "" H 6750 2585 50  0001 C CNN
+F 3 "" H 6750 2585 50  0001 C CNN
+	1    6750 2585
 	1    0    0    -1  
 $EndComp
 Wire Notes Line
@@ -415,43 +415,8 @@ F 3 "~" H 3030 5230 50  0001 C CNN
 	1    3030 5230
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:LED D4
-U 1 1 5F0990D7
-P 3030 5720
-F 0 "D4" V 3069 5603 50  0000 R CNN
-F 1 "LED" V 2978 5603 50  0000 R CNN
-F 2 "LED_THT:LED_D10.0mm" H 3030 5720 50  0001 C CNN
-F 3 "~" H 3030 5720 50  0001 C CNN
-	1    3030 5720
-	0    -1   -1   0   
-$EndComp
-$Comp
-L Device:LED D5
-U 1 1 5F09A387
-P 3365 5720
-F 0 "D5" V 3404 5603 50  0000 R CNN
-F 1 "LED" V 3313 5603 50  0000 R CNN
-F 2 "LED_THT:LED_D10.0mm" H 3365 5720 50  0001 C CNN
-F 3 "~" H 3365 5720 50  0001 C CNN
-	1    3365 5720
-	0    -1   -1   0   
-$EndComp
-$Comp
-L Device:LED D6
-U 1 1 5F09AFE6
-P 3695 5730
-F 0 "D6" V 3734 5613 50  0000 R CNN
-F 1 "LED" V 3643 5613 50  0000 R CNN
-F 2 "LED_THT:LED_D10.0mm" H 3695 5730 50  0001 C CNN
-F 3 "~" H 3695 5730 50  0001 C CNN
-	1    3695 5730
-	0    -1   -1   0   
-$EndComp
 Wire Wire Line
 	3030 5570 3030 5380
-Wire Wire Line
-	3365 5570 3365 5375
 Wire Wire Line
 	3695 5580 3695 5375
 $Comp
@@ -565,7 +530,7 @@ Wire Wire Line
 	5360 1410 5560 1410
 NoConn ~ 4160 3110
 NoConn ~ 4160 3010
-NoConn ~ 4160 2910
+NoConn ~ 5360 1810
 NoConn ~ 4160 2710
 $Comp
 L power:+3.3V #PWR026
@@ -1031,13 +996,13 @@ Wire Wire Line
 $Comp
 L power:GND #PWR038
 U 1 1 5F0D3E19
-P 6900 2365
-F 0 "#PWR038" H 6900 2115 50  0001 C CNN
-F 1 "GND" H 6905 2192 50  0000 C CNN
-F 2 "" H 6900 2365 50  0001 C CNN
-F 3 "" H 6900 2365 50  0001 C CNN
-	1    6900 2365
-	1    0    0    -1  
+P 7000 2590
+F 0 "#PWR038" H 7000 2340 50  0001 C CNN
+F 1 "GND" H 7005 2417 50  0000 C CNN
+F 2 "" H 7000 2590 50  0001 C CNN
+F 3 "" H 7000 2590 50  0001 C CNN
+	1    7000 2590
+	0    1    1    0   
 $EndComp
 $Comp
 L power:GND #PWR037
@@ -1061,13 +1026,13 @@ F 3 "" H 6995 3350 50  0001 C CNN
 	1    6995 3350
 	1    0    0    -1  
 $EndComp
-Text Label 7200 2390 2    50   ~ 0
-TX2
 Text Label 7200 2490 2    50   ~ 0
+TX2
+Text Label 7200 2390 2    50   ~ 0
 RX2
-Text Label 7200 2590 2    50   ~ 0
+Text Label 7200 2290 2    50   ~ 0
 SDA
-Text Label 7200 2690 2    50   ~ 0
+Text Label 7200 2190 2    50   ~ 0
 SCL
 Text Label 7195 4925 2    50   ~ 0
 OP1
@@ -1077,10 +1042,6 @@ Text Label 7190 6050 2    50   ~ 0
 OP2
 Text Label 7200 3105 2    50   ~ 0
 OP2
-Wire Wire Line
-	7200 2290 6900 2290
-Wire Wire Line
-	6900 2290 6900 2365
 Text Label 7200 2805 2    50   ~ 0
 GPIO
 $Comp
@@ -1096,13 +1057,13 @@ F 5 "-" H -1395 30  50  0001 C CNN "lscs#"
 	1    4760 2610
 	1    0    0    -1  
 $EndComp
-Text Label 5360 2010 0    50   ~ 0
+Text Label 5360 3110 0    50   ~ 0
 Trig
-Text Label 5360 2110 0    50   ~ 0
+Text Label 5360 3210 0    50   ~ 0
 Echo
 Text Label 945  3070 2    50   ~ 0
 Buz
-Text Label 5360 2210 0    50   ~ 0
+Text Label 4160 2910 2    50   ~ 0
 Buz
 Text Label 8090 4670 0    50   ~ 0
 D1
@@ -1160,11 +1121,11 @@ Text Label 3365 5075 2    50   ~ 0
 L2
 Text Label 3695 5075 2    50   ~ 0
 L3
-Text Label 5360 2310 0    50   ~ 0
+Text Label 5360 3310 0    50   ~ 0
 L1
-Text Label 5360 3210 0    50   ~ 0
+Text Label 5360 2210 0    50   ~ 0
 L2
-Text Label 5360 3110 0    50   ~ 0
+Text Label 5360 2010 0    50   ~ 0
 L3
 Text Label 5360 3410 0    50   ~ 0
 D1
@@ -1185,7 +1146,7 @@ TX2
 Text Label 5360 2510 0    50   ~ 0
 RX2
 NoConn ~ 1705 1015
-Text Label 5360 3310 0    50   ~ 0
+Text Label 5360 2110 0    50   ~ 0
 Ry1
 $Comp
 L Device:R R11
@@ -1404,10 +1365,6 @@ F 3 "~" H 7280 1035 50  0001 C CNN
 	1    7280 1035
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7200 2190 7125 2190
-Wire Wire Line
-	7125 2190 7125 2130
 $Comp
 L power:GND #PWR042
 U 1 1 5F0EB2E4
@@ -1751,4 +1708,57 @@ Wire Wire Line
 	6960 1035 7080 1035
 Wire Wire Line
 	6960 1035 6960 1225
+Wire Wire Line
+	3365 5375 3365 5570
+$Comp
+L Device:LED D4
+U 1 1 5F214149
+P 3030 5720
+F 0 "D4" V 3069 5603 50  0000 R CNN
+F 1 "LED" V 2978 5603 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 3030 5720 50  0001 C CNN
+F 3 "~" H 3030 5720 50  0001 C CNN
+	1    3030 5720
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:LED D5
+U 1 1 5F216C39
+P 3365 5720
+F 0 "D5" V 3404 5603 50  0000 R CNN
+F 1 "LED" V 3313 5603 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 3365 5720 50  0001 C CNN
+F 3 "~" H 3365 5720 50  0001 C CNN
+	1    3365 5720
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:LED D6
+U 1 1 5F2170D6
+P 3695 5730
+F 0 "D6" V 3734 5613 50  0000 R CNN
+F 1 "LED" V 3643 5613 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 3695 5730 50  0001 C CNN
+F 3 "~" H 3695 5730 50  0001 C CNN
+	1    3695 5730
+	0    -1   -1   0   
+$EndComp
+NoConn ~ 5360 2310
+Wire Wire Line
+	7200 2690 6750 2690
+Wire Wire Line
+	6750 2585 6750 2690
+Wire Wire Line
+	7000 2590 7200 2590
+$Comp
+L Mechanical:MountingHole H5
+U 1 1 5F5898FA
+P 5720 3715
+F 0 "H5" H 5820 3761 50  0000 L CNN
+F 1 "MountingHole" H 5820 3670 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_Pad_Via" H 5720 3715 50  0001 C CNN
+F 3 "~" H 5720 3715 50  0001 C CNN
+	1    5720 3715
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
