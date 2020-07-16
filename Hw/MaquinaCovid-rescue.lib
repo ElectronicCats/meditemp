@@ -1,0 +1,35 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# AP2114H-3.3TRG1-electroniccats-Agronomo-rescue
+#
+DEF AP2114H-3.3TRG1-electroniccats-Agronomo-rescue U 0 40 Y Y 1 F N
+F0 "U" 0 150 50 H V C CNN
+F1 "AP2114H-3.3TRG1-electroniccats-Agronomo-rescue" 0 -250 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+S -300 100 300 -200 0 1 0 f
+X GND 1 -400 -150 100 R 50 50 1 1 B
+X Vout_1 2 400 50 100 L 50 50 1 1 B
+X Vin 3 -400 50 100 R 50 50 1 1 B
+X Vout_2 4 400 -150 100 L 50 50 1 1 B
+ENDDRAW
+ENDDEF
+#
+# AZ1084CD-5.0TRG1-electroniccats-Agronomo-rescue
+#
+DEF AZ1084CD-5.0TRG1-electroniccats-Agronomo-rescue U 0 40 Y Y 1 F N
+F0 "U" 0 150 50 H V C CNN
+F1 "AZ1084CD-5.0TRG1-electroniccats-Agronomo-rescue" 0 -150 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+S -400 100 350 -100 0 1 0 f
+X ADJ/GND 1 -500 -50 100 R 50 50 1 1 I
+X OUTPUT 2 450 50 100 L 50 50 1 1 O
+X Input 3 -500 50 100 R 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
+#End Library

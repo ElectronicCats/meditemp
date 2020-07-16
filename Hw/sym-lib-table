@@ -4,4 +4,5 @@
   (lib (name Badge-OWASP-2020-rescue)(type Legacy)(uri C:/Users/Usuario/Documents/electronicCats/badge-owasp-latam-mexico-2020-master/HW/Badge-OWASP-2020/Badge-OWASP-2020-rescue.lib)(options "")(descr ""))
   (lib (name agroin)(type Legacy)(uri ${KIPRJMOD}/library/agroin.lib)(options "")(descr ""))
   (lib (name CatWAN-Relay-rescue)(type Legacy)(uri ${KIPRJMOD}/CatWAN-Relay-rescue.lib)(options "")(descr ""))
+  (lib (name MaquinaCovid-rescue)(type Legacy)(uri ${KIPRJMOD}/MaquinaCovid-rescue.lib)(options "")(descr ""))
 )
