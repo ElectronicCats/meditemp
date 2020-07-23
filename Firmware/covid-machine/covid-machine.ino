@@ -21,6 +21,9 @@
 #include <Adafruit_MLX90614.h>
 #include <WiFiManager.h> // https://github.com/tzapu/WiFiManager
 
+int counter=0;
+//defines temperature global variables
+float temperaturaObjeto;
 // defines pins numbers of ultrasonic
 const int trigPin = 2;
 const int echoPin = 5;
@@ -32,7 +35,7 @@ int lcdColumns = 16;
 int lcdRows = 2;
 // set LCD address, number of columns and rows
 // if you don't know your display address, run an I2C scanner sketch
-LiquidCrystal_I2C lcd(0x3F, lcdColumns, lcdRows);
+LiquidCrystal_I2C lcd(0x3F, lcdColumns, lcdRows); 
 // Instanciar objeto (TEMP)
 Adafruit_MLX90614 termometroIR = Adafruit_MLX90614();
 
@@ -70,94 +73,135 @@ void setup() {
     Serial.println("connected...yeey :)");
   }
 
-  pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
+   pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
   pinMode(echoPin, INPUT); // Sets the echoPin as an Input
+  pinMode(12, OUTPUT);
+  pinMode(14, OUTPUT);
   Serial.begin(9600); // Starts the serial communication
   // initialize LCD
   lcd.init();
-  // turn on LCD backlight
+  // turn on LCD backlight                      
   lcd.backlight();
   // Iniciar termómetro infrarrojo con Arduino
   termometroIR.begin();
+  pantalla();
 
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  temperatura() ;
-}
-
-void ultrasonido()
+void loop() 
 {
-  // Clears the trigPin
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  // Sets the trigPin on HIGH state for 10 micro seconds
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  // Reads the echoPin, returns the sound wave travel time in microseconds
-  duration = pulseIn(echoPin, HIGH);
-  // Calculating the distance
-  distance = duration * 0.034 / 2;
-  // Prints the distance on the Serial Monitor
-  Serial.print("Distance: ");
-  Serial.println(distance);
-  delay(200);
-  return;
+    
+    // Clears the trigPin
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+    // Sets the trigPin on HIGH state for 10 micro seconds
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+    // Reads the echoPin, returns the sound wave travel time in microseconds
+    duration = pulseIn(echoPin, HIGH);
+    // Calculating the distance
+    distance= duration*0.034/2;
+    // Prints the distance on the Serial Monitor
+    Serial.print("Distance: ");
+    Serial.println(distance);
+    delay(200);  
+    if (distance <= 5)
+    {
+      counter ++;
+      temperatura();
+    }
 }
-void pantalla()
-{
-  // initialize LCD
+
+  void pantalla() 
+    {
+      // initialize LCD
   lcd.init();
-  // turn on LCD backlight
+  // turn on LCD backlight                      
   lcd.backlight();
   // set cursor to first column, first row
+  lcd.setCursor(0,1);
+  lcd.clear();
   lcd.setCursor(0, 0);
+  lcd.clear();
   // print message
-  lcd.print("No seas mamon");
-  delay(1000);
+  lcd.print("Bienvenido");
+  delay(1500);
   // clears the display to print new message
-  //lcd.clear();
+  lcd.clear();
   // set cursor to first column, second row
-  lcd.setCursor(0, 1);
-  lcd.print("Alan...");
-  delay(1000);
-  lcd.setCursor(0, 0);
-  lcd.clear();
-  lcd.setCursor(0, 1);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  // print message
-  lcd.print("Si ya sabes");
-  delay(1000);
-  lcd.setCursor(0, 1);
-  lcd.print("Como son...");
-  delay(1000);
-  lcd.setCursor(0, 0);
-  lcd.clear();
-  lcd.setCursor(0, 1);
-  lcd.clear();
+  lcd.print("Coloque sufrente");
+  //delay(1000);
+  lcd.setCursor(0,1);
+  lcd.print("abajo por favor");
+  delay(1000); 
   return;
-}
-void temperatura()
-{
+    }
+    
+    void pantalla2() 
+    {
+  lcd.setCursor(0,1);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.clear();
+  lcd.print("Temp ");
+  lcd.print(temperaturaObjeto);
+  lcd.setCursor(0,1);
+  lcd.print("Pase usted");
+  delay(1000); 
+  return;
+    }
+    
+     void pantalla3() 
+    {
+  lcd.setCursor(0,1);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.clear();
+  lcd.print("Temp ");
+  lcd.print(temperaturaObjeto);
+  lcd.setCursor(0,1);
+  lcd.print("NO PASE");
+  delay(1000); 
+  return;
+    }
+    
+ void temperatura()
+ {
   // Obtener temperaturas grados Celsius
   float temperaturaAmbiente = termometroIR.readAmbientTempC();
-  float temperaturaObjeto = termometroIR.readObjectTempC();
-
+  temperaturaObjeto = termometroIR.readObjectTempC();
+ 
   // Mostrar información
+  
   Serial.print("Temp. ambiente => ");
   Serial.print(temperaturaAmbiente);
   Serial.println("ºC");
-
+ 
   Serial.print("Temp. objeto => ");
   Serial.print(temperaturaObjeto);
   Serial.println("ºC");
-
+  if (23 <= temperaturaObjeto && temperaturaObjeto<= 30)
+  {
+    digitalWrite(12, HIGH);   // turn the LED on (HIGH is the voltage level)
+    pantalla2();
+    delay(1500);                       // wait for a second
+    digitalWrite(12, LOW);    // turn the LED off by making the voltage LOW
+    pantalla();
+  }
+  else
+ {
+    digitalWrite(14, HIGH);   // turn the LED on (HIGH is the voltage level)
+    pantalla3();
+    delay(1500);                       // wait for a second
+    digitalWrite(14, LOW);    // turn the LED off by making the voltage LOW
+    pantalla();
+ }
   delay(2000);
-
+  return;
+ 
   // Si quieres mostrar la información en grados Fahrenheit utiliza las funciones
   // readAmbientTempF() para temperatura ambiente
   // readObjectTempF() para temperatura del objeto
-}
+ }
+ 

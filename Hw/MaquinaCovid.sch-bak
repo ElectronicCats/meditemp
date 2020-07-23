@@ -1750,4 +1750,15 @@ Wire Wire Line
 	6750 2585 6750 2690
 Wire Wire Line
 	7000 2590 7200 2590
+$Comp
+L Mechanical:MountingHole H5
+U 1 1 5F5898FA
+P 5720 3715
+F 0 "H5" H 5820 3761 50  0000 L CNN
+F 1 "MountingHole" H 5820 3670 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_Pad_Via" H 5720 3715 50  0001 C CNN
+F 3 "~" H 5720 3715 50  0001 C CNN
+	1    5720 3715
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
