@@ -1,3 +1,11 @@
+/**********************************************************
+  This example code works for Covid Machine
+  
+  Created by Andres Sabas @ Electronic Cats 2020
+  Jorge Uri @ Electronic Cats
+
+  Electronic Cats 2020
+*************************************************************/
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
 #include <Adafruit_MLX90614.h>
@@ -5,7 +13,31 @@
 #include "FS.h" // Libraries for SD card
 #include "SD.h"
 #include <SPI.h>
-int counter=0;
+#include <IotWebConf.h>
+
+// -- Initial name of the Thing. Used e.g. as SSID of the own Access Point.
+const char thingName[] = "TempC";
+
+// -- Initial password to connect to the Thing, when it creates an own Access Point.
+const char wifiInitialApPassword[] = "smrtTHNG8266";
+
+// -- Configuration specific key. The value should be modified if config structure was changed.
+#define CONFIG_VERSION "dem1"
+
+// -- When CONFIG_PIN is pulled to ground on startup, the Thing will use the initial
+//      password to buld an AP. (E.g. in case of lost password)
+#define CONFIG_PIN 2
+
+// -- Status indicator pin.
+//      First it will light up (kept LOW), on Wifi connection it will blink,
+//      when connected to the Wifi it will turn off (kept HIGH).
+#define STATUS_PIN LED_BUILTIN
+
+DNSServer dnsServer;
+WebServer server(80);
+HTTPUpdateServer httpUpdater;
+
+IotWebConf iotWebConf(thingName, &dnsServer, &server, wifiInitialApPassword, CONFIG_VERSION);
 
 #define DS3231_I2C_ADDRESS 0x68
 
@@ -46,9 +78,23 @@ void readDS3231time(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byt
 
 void setup()
 {
+  Serial.begin(9600);
+  
+  iotWebConf.setStatusPin(STATUS_PIN);
+  iotWebConf.setConfigPin(CONFIG_PIN);
+  iotWebConf.setupUpdateServer(&httpUpdater);
+
+  // -- Initializing the configuration.
+  iotWebConf.init();
+
+  // -- Set up required URL handlers on the web server.
+  server.on("/", handleRoot);
+  server.on("/config", []{ iotWebConf.handleConfig(); });
+  server.onNotFound([](){ iotWebConf.handleNotFound(); });
+
   deleteFile(SD, "/Cliente.csv");
   Wire.begin();
-  Serial.begin(9600);
+  
   // set the initial time here:
   // DS3231 seconds, minutes, hours, day, date, month, year
   setDS3231time(1, 6, 13, 2, 3, 8, 20); // Cambiar esto siempre que se inicialice
@@ -131,6 +177,8 @@ void loop()
     temperatura();
   }
 
+  // -- doLoop should be called as frequently as possible.
+  iotWebConf.doLoop();
 }
 
 
@@ -465,4 +513,23 @@ void readDS3231time(byte *second, byte *minute, byte *hour, byte *dayOfWeek, byt
   *dayOfMonth = bcdToDec(Wire.read());
   *month = bcdToDec(Wire.read());
   *year = bcdToDec(Wire.read());
+}
+
+/**
+ * Handle web requests to "/" path.
+ */
+void handleRoot()
+{
+  // -- Let IotWebConf test and handle captive portal requests.
+  if (iotWebConf.handleCaptivePortal())
+  {
+    // -- Captive portal request were already served.
+    return;
+  }
+  String s = "<!DOCTYPE html><html lang=\"en\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\"/>";
+  s += "<title>IotWebConf 04 Update Server</title></head><body>Hello world!";
+  s += "Go to <a href='config'>configure page</a> to change values.";
+  s += "</body></html>\n";
+
+  server.send(200, "text/html", s);
 }
