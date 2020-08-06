@@ -92,7 +92,7 @@ void setup()
   server.on("/config", []{ iotWebConf.handleConfig(); });
   server.onNotFound([](){ iotWebConf.handleNotFound(); });
 
-  deleteFile(SD, "/Cliente.csv");
+  
   Wire.begin();
   
   // set the initial time here:
