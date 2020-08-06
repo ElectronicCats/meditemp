@@ -26,7 +26,7 @@ const char wifiInitialApPassword[] = "smrtTHNG8266";
 
 // -- When CONFIG_PIN is pulled to ground on startup, the Thing will use the initial
 //      password to buld an AP. (E.g. in case of lost password)
-#define CONFIG_PIN 2
+#define CONFIG_PIN 34
 
 // -- Status indicator pin.
 //      First it will light up (kept LOW), on Wifi connection it will blink,
