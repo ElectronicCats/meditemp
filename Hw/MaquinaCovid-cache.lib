@@ -1,37 +1,6 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
-# Agronomo-rescue_AP2114H-3.3TRG1-electroniccats
-#
-DEF Agronomo-rescue_AP2114H-3.3TRG1-electroniccats U 0 40 Y Y 1 F N
-F0 "U" 0 150 50 H V C CNN
-F1 "Agronomo-rescue_AP2114H-3.3TRG1-electroniccats" 0 -250 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-S -300 100 300 -200 0 1 0 f
-X GND 1 -400 -150 100 R 50 50 1 1 B
-X Vout_1 2 400 50 100 L 50 50 1 1 B
-X Vin 3 -400 50 100 R 50 50 1 1 B
-X Vout_2 4 400 -150 100 L 50 50 1 1 B
-ENDDRAW
-ENDDEF
-#
-# Agronomo-rescue_AZ1084CD-5.0TRG1-electroniccats
-#
-DEF Agronomo-rescue_AZ1084CD-5.0TRG1-electroniccats U 0 40 Y Y 1 F N
-F0 "U" 0 150 50 H V C CNN
-F1 "Agronomo-rescue_AZ1084CD-5.0TRG1-electroniccats" 0 -150 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-S -400 100 350 -100 0 1 0 f
-X ADJ/GND 1 -500 -50 100 R 50 50 1 1 I
-X OUTPUT 2 450 50 100 L 50 50 1 1 O
-X Input 3 -500 50 100 R 50 50 1 1 I
-ENDDRAW
-ENDDEF
-#
 # CatWAN-Relay-rescue_LTV-817-agroin-rescue
 #
 DEF CatWAN-Relay-rescue_LTV-817-agroin-rescue U 0 40 Y Y 1 F N
@@ -346,6 +315,37 @@ DRAW
 S -40 -100 40 100 0 1 10 N
 X ~ 1 0 150 50 D 50 50 1 1 P
 X ~ 2 0 -150 50 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# MaquinaCovid-rescue_AP2114H-3.3TRG1-electroniccats-Agronomo-rescue
+#
+DEF MaquinaCovid-rescue_AP2114H-3.3TRG1-electroniccats-Agronomo-rescue U 0 40 Y Y 1 F N
+F0 "U" 0 150 50 H V C CNN
+F1 "MaquinaCovid-rescue_AP2114H-3.3TRG1-electroniccats-Agronomo-rescue" 0 -250 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+S -300 100 300 -200 0 1 0 f
+X GND 1 -400 -150 100 R 50 50 1 1 B
+X Vout_1 2 400 50 100 L 50 50 1 1 B
+X Vin 3 -400 50 100 R 50 50 1 1 B
+X Vout_2 4 400 -150 100 L 50 50 1 1 B
+ENDDRAW
+ENDDEF
+#
+# MaquinaCovid-rescue_AZ1084CD-5.0TRG1-electroniccats-Agronomo-rescue
+#
+DEF MaquinaCovid-rescue_AZ1084CD-5.0TRG1-electroniccats-Agronomo-rescue U 0 40 Y Y 1 F N
+F0 "U" 0 150 50 H V C CNN
+F1 "MaquinaCovid-rescue_AZ1084CD-5.0TRG1-electroniccats-Agronomo-rescue" 0 -150 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+S -400 100 350 -100 0 1 0 f
+X ADJ/GND 1 -500 -50 100 R 50 50 1 1 I
+X OUTPUT 2 450 50 100 L 50 50 1 1 O
+X Input 3 -500 50 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #

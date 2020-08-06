@@ -137,7 +137,7 @@ Wire Wire Line
 	4135 7535 4135 7445
 Connection ~ 3985 7535
 $Comp
-L Agronomo-rescue:AP2114H-3.3TRG1-electroniccats U2
+L MaquinaCovid-rescue:AP2114H-3.3TRG1-electroniccats-Agronomo-rescue U2
 U 1 1 5EAFBC26
 P 3275 7195
 F 0 "U2" H 3275 7470 50  0000 C CNN
@@ -173,7 +173,7 @@ $EndComp
 Wire Wire Line
 	4265 7145 4265 7045
 $Comp
-L Agronomo-rescue:AZ1084CD-5.0TRG1-electroniccats U1
+L MaquinaCovid-rescue:AZ1084CD-5.0TRG1-electroniccats-Agronomo-rescue U1
 U 1 1 5ED8584A
 P 1585 7195
 F 0 "U1" H 1560 7470 50  0000 C CNN
@@ -270,7 +270,7 @@ L Device:D_Schottky D3
 U 1 1 5F0805CB
 P 1515 2645
 F 0 "D3" V 1475 2470 50  0000 L CNN
-F 1 "SS24FL" V 1560 2190 50  0000 L CNN
+F 1 "SS24FL" V 1560 2315 50  0000 L CNN
 F 2 "Diode_SMD:D_SOD-123F" H 1515 2645 50  0001 C CNN
 F 3 "~" H 1515 2645 50  0001 C CNN
 	1    1515 2645
@@ -363,19 +363,8 @@ Wire Wire Line
 	1055 7145 1085 7145
 Text Label 1705 1115 2    50   ~ 0
 RX
-Text Label 1320 1215 2    50   ~ 0
+Text Label 1620 1215 2    50   ~ 0
 TX
-$Comp
-L Device:D D2
-U 1 1 5F08A782
-P 1470 1215
-F 0 "D2" H 1570 1165 50  0000 C CNN
-F 1 "1N4148" H 1475 1090 50  0000 C CNN
-F 2 "Diode_SMD:D_SOD-323" H 1470 1215 50  0001 C CNN
-F 3 "~" H 1470 1215 50  0001 C CNN
-	1    1470 1215
-	-1   0    0    1   
-$EndComp
 $Comp
 L power:GND #PWR07
 U 1 1 5F08CB9A
@@ -394,10 +383,6 @@ Wire Wire Line
 NoConn ~ 1705 1415
 Wire Wire Line
 	1705 1215 1620 1215
-Wire Wire Line
-	1705 1315 1170 1315
-Wire Wire Line
-	1170 1315 1170 1240
 Wire Notes Line
 	2535 2075 2535 490 
 Wire Notes Line
@@ -530,7 +515,6 @@ Wire Wire Line
 	5360 1410 5560 1410
 NoConn ~ 4160 3110
 NoConn ~ 4160 3010
-NoConn ~ 5360 1810
 NoConn ~ 4160 2710
 $Comp
 L power:+3.3V #PWR026
@@ -598,9 +582,7 @@ GPIO0
 Wire Wire Line
 	3010 3120 3010 2920
 Wire Wire Line
-	3410 2920 3560 2920
-Wire Wire Line
-	3410 2010 3610 2010
+	3410 2920 3480 2920
 Wire Wire Line
 	3010 2010 3010 2210
 Wire Wire Line
@@ -620,7 +602,7 @@ F 5 "C25612" H -1395 30  50  0001 C CNN "lscs#"
 $EndComp
 Wire Wire Line
 	3760 1110 3760 1010
-Text Label 3610 2010 0    50   ~ 0
+Text Label 3650 2010 0    50   ~ 0
 EN
 $Comp
 L power:+3.3V #PWR021
@@ -1044,26 +1026,13 @@ Text Label 7200 3105 2    50   ~ 0
 OP2
 Text Label 7200 2805 2    50   ~ 0
 GPIO
-$Comp
-L RF_Module:ESP32-WROOM-32 U3
-U 1 1 5DF45865
-P 4760 2610
-F 0 "U3" H 5260 4260 50  0000 C CNN
-F 1 "ESP32-WROOM-32" H 5560 4060 50  0000 C CNN
-F 2 "RF_Module:ESP32-WROOM-32" H 4760 1110 50  0001 C CNN
-F 3 "https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf" H 4460 2660 50  0001 C CNN
-F 4 "ESP32-WROOM-32" H -1395 30  50  0001 C CNN "manf#"
-F 5 "-" H -1395 30  50  0001 C CNN "lscs#"
-	1    4760 2610
-	1    0    0    -1  
-$EndComp
 Text Label 5360 3110 0    50   ~ 0
 Trig
 Text Label 5360 3210 0    50   ~ 0
 Echo
 Text Label 945  3070 2    50   ~ 0
 Buz
-Text Label 4160 2910 2    50   ~ 0
+Text Label 5360 1810 0    50   ~ 0
 Buz
 Text Label 8090 4670 0    50   ~ 0
 D1
@@ -1262,17 +1231,6 @@ Text Notes 6340 3900 0    50   ~ 0
 Optoacopladores\n
 NoConn ~ 5140 7125
 $Comp
-L power:+3.3V #PWR03
-U 1 1 5F0CD71A
-P 1170 1240
-F 0 "#PWR03" H 1170 1090 50  0001 C CNN
-F 1 "+3.3V" H 1185 1413 50  0000 C CNN
-F 2 "" H 1170 1240 50  0001 C CNN
-F 3 "" H 1170 1240 50  0001 C CNN
-	1    1170 1240
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:+3.3V #PWR012
 U 1 1 5F0CEBC1
 P 1725 4095
@@ -1281,17 +1239,6 @@ F 1 "+3.3V" H 1740 4268 50  0000 C CNN
 F 2 "" H 1725 4095 50  0001 C CNN
 F 3 "" H 1725 4095 50  0001 C CNN
 	1    1725 4095
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3.3V #PWR06
-U 1 1 5F0CF9D3
-P 1465 4960
-F 0 "#PWR06" H 1465 4810 50  0001 C CNN
-F 1 "+3.3V" H 1330 4965 50  0000 C CNN
-F 2 "" H 1465 4960 50  0001 C CNN
-F 3 "" H 1465 4960 50  0001 C CNN
-	1    1465 4960
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1502,7 +1449,7 @@ Text Label 10245 4615 3    50   ~ 0
 NO2
 Text Label 8880 4950 2    50   ~ 0
 Ry2
-Text Label 4160 2810 2    50   ~ 0
+Text Label 5360 2310 0    50   ~ 0
 Ry2
 $Comp
 L Device:D_Schottky D1
@@ -1620,47 +1567,6 @@ $EndComp
 Wire Wire Line
 	8915 2910 8840 2910
 $Comp
-L Device:R R6
-U 1 1 5F0DC3AE
-P 4030 5205
-F 0 "R6" H 4100 5251 50  0000 L CNN
-F 1 "330" H 4100 5160 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 3960 5205 50  0001 C CNN
-F 3 "~" H 4030 5205 50  0001 C CNN
-	1    4030 5205
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:LED D7
-U 1 1 5F0DCDF6
-P 4030 5725
-F 0 "D7" V 4069 5608 50  0000 R CNN
-F 1 "LED" V 3978 5608 50  0000 R CNN
-F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4030 5725 50  0001 C CNN
-F 3 "~" H 4030 5725 50  0001 C CNN
-	1    4030 5725
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	4030 5355 4030 5575
-$Comp
-L power:GND #PWR023
-U 1 1 5F0E3D15
-P 4030 5985
-F 0 "#PWR023" H 4030 5735 50  0001 C CNN
-F 1 "GND" H 4035 5812 50  0000 C CNN
-F 2 "" H 4030 5985 50  0001 C CNN
-F 3 "" H 4030 5985 50  0001 C CNN
-	1    4030 5985
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4030 5985 4030 5875
-Text Label 4030 5055 2    50   ~ 0
-L4
-Text Label 4160 2610 2    50   ~ 0
-L4
-$Comp
 L Mechanical:MountingHole H4
 U 1 1 5F1BB7D3
 P 5715 3900
@@ -1743,7 +1649,6 @@ F 3 "~" H 3695 5730 50  0001 C CNN
 	1    3695 5730
 	0    -1   -1   0   
 $EndComp
-NoConn ~ 5360 2310
 Wire Wire Line
 	7200 2690 6750 2690
 Wire Wire Line
@@ -1761,4 +1666,65 @@ F 3 "~" H 5720 3715 50  0001 C CNN
 	1    5720 3715
 	1    0    0    -1  
 $EndComp
+$Comp
+L Device:R R15
+U 1 1 5F24469B
+P 3480 2630
+F 0 "R15" V 3390 2705 50  0000 R CNN
+F 1 "10K" V 3570 2705 50  0000 R CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 3410 2630 50  0001 C CNN
+F 3 "~" H 3480 2630 50  0001 C CNN
+F 4 "0805W8J0103T5E" H -1675 1400 50  0001 C CNN "manf#"
+F 5 "C25612" H -1675 1400 50  0001 C CNN "lscs#"
+	1    3480 2630
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3480 2780 3480 2920
+$Comp
+L power:+3.3V #PWR0101
+U 1 1 5F24FFA5
+P 3480 2425
+F 0 "#PWR0101" H 3480 2275 50  0001 C CNN
+F 1 "+3.3V" H 3495 2598 50  0000 C CNN
+F 2 "" H 3480 2425 50  0001 C CNN
+F 3 "" H 3480 2425 50  0001 C CNN
+	1    3480 2425
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3480 2480 3480 2425
+Connection ~ 3480 2920
+Wire Wire Line
+	3480 2920 3560 2920
+Wire Wire Line
+	3410 2010 3650 2010
+$Comp
+L power:+5V #PWR0102
+U 1 1 5F2A1F9D
+P 1465 4960
+F 0 "#PWR0102" H 1465 4810 50  0001 C CNN
+F 1 "+5V" H 1555 5055 50  0000 C CNN
+F 2 "" H 1465 4960 50  0001 C CNN
+F 3 "" H 1465 4960 50  0001 C CNN
+	1    1465 4960
+	1    0    0    -1  
+$EndComp
+$Comp
+L RF_Module:ESP32-WROOM-32 U3
+U 1 1 5DF45865
+P 4760 2610
+F 0 "U3" H 5260 4260 50  0000 C CNN
+F 1 "ESP32-WROOM-32" H 5560 4060 50  0000 C CNN
+F 2 "RF_Module:ESP32-WROOM-32" H 4760 1110 50  0001 C CNN
+F 3 "https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf" H 4460 2660 50  0001 C CNN
+F 4 "ESP32-WROOM-32" H -1395 30  50  0001 C CNN "manf#"
+F 5 "-" H -1395 30  50  0001 C CNN "lscs#"
+	1    4760 2610
+	1    0    0    -1  
+$EndComp
+NoConn ~ 4160 2810
+NoConn ~ 4160 2910
+NoConn ~ 4160 2610
+NoConn ~ 1705 1315
 $EndSCHEMATC
