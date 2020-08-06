@@ -19,7 +19,7 @@ float temperaturaObjeto;
 const int trigPin = 25;
 const int echoPin = 26;
 String memoria ="";
-//char*outgoingCh;
+String tiempo= ""; 
 // defines variables of ultrasonic
 long duration;
 int distance;
@@ -48,11 +48,12 @@ void readDS3231time(byte *second,byte *minute,byte *hour,byte *dayOfWeek,byte *d
  
 void setup() 
 {
+  deleteFile(SD, "/Cliente.csv");
   Wire.begin();
   Serial.begin(9600);
   // set the initial time here:
   // DS3231 seconds, minutes, hours, day, date, month, year
-  setDS3231time(30,26,13,2,3,8,20); // Cambiar esto siempre que se inicialice 
+  setDS3231time(1,6,13,2,3,8,20); // Cambiar esto siempre que se inicialice 
   pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
   pinMode(echoPin, INPUT); // Sets the echoPin as an Input
   pinMode(12, OUTPUT);
@@ -87,10 +88,8 @@ void setup()
     } else {
         Serial.println("UNKNOWN");
     }
+    appendFile(SD, "/Cliente.csv","Temperatura,Hora,Fecha,Val,\n");
 /*
-    uint64_t cardSize = SD.cardSize() / (1024 * 1024);
-    Serial.printf("SD Card Size: %lluMB\n", cardSize);
-
     listDir(SD, "/", 0);
     createDir(SD, "/mydir");
     listDir(SD, "/", 0);
@@ -195,14 +194,9 @@ void loop()
   // Obtener temperaturas grados Celsius
   float temperaturaAmbiente = termometroIR.readAmbientTempC();
   temperaturaObjeto = termometroIR.readObjectTempC();
-  char tempsd[6];
-  char HR[4];
-  //char MIN[4];
-  //char SEC[4];
   byte second, minute, hour, dayOfWeek, dayOfMonth, month, year;
   // retrieve data from DS3231
-  readDS3231time(&second, &minute, &hour, &dayOfWeek, &dayOfMonth, &month,
-  &year);
+  readDS3231time(&second, &minute, &hour, &dayOfWeek, &dayOfMonth, &month,&year);
   // Mostrar información
   
   Serial.print("Temp. ambiente => ");
@@ -215,7 +209,45 @@ void loop()
 
   memoria+=String(temperaturaObjeto);
   memoria+=",";
-  
+  tiempo+=String(hour);
+  tiempo+=":";
+  if (minute<10)
+  {
+    tiempo+="0";
+  }
+  tiempo+=String(minute);
+  tiempo+=":";
+   if (second<10)
+  {
+    tiempo+="0";
+  }
+  tiempo+=String(second);
+  tiempo+=",";
+  if (dayOfMonth<10)
+  {
+    tiempo+="0";
+  }
+  tiempo+=String(dayOfMonth);
+  tiempo+="/";
+   if (month<10)
+  {
+    tiempo+="0";
+  }
+  tiempo+=String(month);
+  tiempo+="/";
+  tiempo+=String(year);
+  tiempo+=",";
+  char datos[memoria.length()+1];
+  memoria.toCharArray(datos,memoria.length());
+  char datost[tiempo.length()+1];
+  tiempo.toCharArray(datost,tiempo.length());
+  appendFile(SD, "/Cliente.csv",datos);
+  appendFile(SD, "/Cliente.csv","C ");
+  appendFile(SD, "/Cliente.csv",",");
+  appendFile(SD, "/Cliente.csv",datost);
+  appendFile(SD, "/Cliente.csv",",");
+  memoria="";
+  tiempo="";
   
   if (23 <= temperaturaObjeto && temperaturaObjeto<= 30)
   {
@@ -223,23 +255,7 @@ void loop()
     pantalla2();
     delay(500);                       // wait for a second
     digitalWrite(12, LOW);    // turn the LED off by making the voltage LOW
-    pantalla();
-    dtostrf(temperaturaObjeto, 2, 2,tempsd);
-    //dtostrf(hour, 2, 2,HR);
-    //dtostrf(minute, 2, 2,MIN);
-   // dtostrf(minute, 2, 2,SEC);
-   //writeFile(SD, "/Cliente.csv", "Temperature ");
-    char datos[memoria.length()+1];
-    memoria.toCharArray(outgoingCh,as.length());
-    appendFile(SD, "/Cliente.csv",tempsd);
-    appendFile(SD, "/Cliente.csv","°C");
-    //appendFile(SD, "/Cliente.csv",HR);
-    //appendFile(SD, "/Cliente.csv",":");
-    //appendFile(SD, "/Cliente.csv",MIN);
-    //appendFile(SD, "/Cliente.csv",":");
-    //appendFile(SD, "/Cliente.csv",SEC);
-    appendFile(SD, "/Cliente.csv","\n");
-    readFile(SD, "/Cliente.csv");
+    appendFile(SD, "/Cliente.csv","Si");
   }
   else
  {
@@ -249,27 +265,11 @@ void loop()
     delay(500);                       // wait for a second
     digitalWrite(14, LOW);    // turn the LED off by making the voltage LOW
     digitalWrite(33, LOW);
-    pantalla();
-    dtostrf(temperaturaObjeto, 2, 2,tempsd);
-    //dtostrf(hour, 2, 0,HR);
-    //dtostrf(minute, 2, 0,MIN);
-   // dtostrf(minute, 2, 0,SEC);
-   //writeFile(SD, "/Cliente.csv", "Temperature ");
-    char datos[memoria.length()+1];
-    memoria.toCharArray(datos,as.length());
-    appendFile(SD, "/Cliente.csv",tempsd);
-    appendFile(SD, "/Cliente.csv","°C");
-    //appendFile(SD, "/Cliente.csv",HR);
-    ///appendFile(SD, "/Cliente.csv",":");
-    //appendFile(SD, "/Cliente.csv",MIN);
-   // appendFile(SD, "/Cliente.csv",":");
-   // appendFile(SD, "/Cliente.csv",SEC);
-    appendFile(SD, "/Cliente.csv","\n");
-    readFile(SD, "/Cliente.csv");
-    
+    appendFile(SD, "/Cliente.csv","No");
  }
- 
-  delay(1000);
+  appendFile(SD, "/Cliente.csv","\n");
+  readFile(SD, "/Cliente.csv");
+  pantalla();
   return;
  
   // Si quieres mostrar la información en grados Fahrenheit utiliza las funciones
