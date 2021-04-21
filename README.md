@@ -22,13 +22,17 @@ La estación realiza una medición de temperatura corporal de manera no invasiva
 
 ## Funcionalidades
 
-Sensor de temperatura corporal Infrarrojo de no contacto
+Sensor de temperatura corporal 
+Infrarrojo de no contacto
 Pantalla alfanumérica para visualización de datos
 Alarma audible Buzzer de 90dB 
 Leds Indicadores grandes de 10mm brillantes 
 Memoria SD para almacenamiento de datos
 Conectividad WiFi 
-2 salidas a relevador Tensión de contacto 220 VCD, 250 VAC. Corriente soportada 1A. Potencia 30W, 37.7 VA
+2 salidas a relevador 
+Tensión de contacto 220 VCD, 250 VAC. 
+Corriente soportada 1A. 
+Potencia 30W, 37.7 VA
 Voltaje de trabajo 110 - 220 Vac 
 
 
@@ -48,7 +52,7 @@ La estación cuenta con la posibilidad de conectar un contador de personas de sa
 
 
 
-#Licence
+# Licence
 
 Electronic Cats invests time and resources providing this open source design, please support Electronic Cats and open-source hardware by purchasing products from Electronic Cats!
 
